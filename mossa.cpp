@@ -1,4 +1,4 @@
-#include"mossa.h"
+#include"mossa.hpp"
 
 	Mossa::Mossa(std::string nome,int tipo,int attacco,int difesa,int attaccoX,int difesaX,int velocita,int precisione,int hp,std::string stato,int ppM){
 		this->nome = nome;

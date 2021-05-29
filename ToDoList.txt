@@ -1,0 +1,37 @@
+1) Inserire attributo velocità al codemon : questo attributo servirà per decretare il turno durante le sfide!  (FATTO)
+2) Inserire attributo velocità al codemon : questo attributo servirà per decretare l'effettiva applicazione effetto della mossa utilizzata (FATTO)
+3) Inserire metodi set e get necessari nella classe Codemon (FATTO)
+4) Creare class Codedex(FATTO)
+5) Creare classe Box -> Quando la player.team è piena, il codemon catturato andrà direttamente qui dentro (FATTO)
+11) Creare una classe Mossa in cui andremo ad inserire applyEffect per l'effettiva applicazione della mossa coi vari controlli di precisione e velocità e tutte le stats in generale(FATTO)
+12) Inserire in codemon un nuovo attributo, ossia un insieme di mosse apprendibili (FATTO)
+7) Creare class Item e Item Base, per poter cominciare ad usare gli strumenti e gli stumenti base -->> Strumenti maxN 99, Strum_Base maxN 1 e non viene mai distrutto(FATTO)
+8) Creare class CodeCube per poter catturare i codemons -> equivalenti pokeballs :D(FATTO)
+10) Creare classe Personaggio (i personaggi hanno diverse mods : parlano e basta , parlano e vendono/comprano ,(?) personaggi di script(?), sfidano col proprio team il nostro player(codetrainers) -> sottospecie (capiSettore) (FATTO)
+9) Creare classe Zaino per contenere gli strumenti(FATTO)
+
+
+
+
+
+6) Implementare i vari distruttori da usare opportunamente per evitare MEMORY LEAK(NON FATTO!!!!)
+DA VEDERE BENE!!!!
+quando fai codemon.applyEffect(Codemon), il secondo codemon viene modificato , ma non scalano i pp della mossa che si usa!!! vedere bene e in caso chiedere al prof
+13) Creare all'interno della classe Codemon un metodo per imparare le mosse al variare del vivello fra le mosse Acquisibili
+
+
+
+
+
+
+
+Dopo ciò vedere eventuali problemi/bug e cominciare a pensare alla parte grafica (CHE DIO MI AIUTI)
+
+14) Creare Sprite allenatore (UNA PER IL MASCHIO E UNA PER LA FEMMINA) con annesso movimento in avanti,indietro, sopra e sotto
+15) Creare Sprites relative ai Codemons che si devono creare
+16) Creare ambientazioni relativi ai luoghi visitati
+17) creare sprite per gli strumenti, gli stumBase , le codeCube , i characters , le mosse , le ambientazioni dei luoghi 
+18) Implementare all'interno di Player un float posx e un float posy e metodi set e get relativi per far muovere lo sprite relative al player all'interno della canvas
+19) Implementare all'interno di Character un float posx e un float posy per settare la posizione dei vari characters all'interno della mappa
+20) Implementare collisions per player e characers
+

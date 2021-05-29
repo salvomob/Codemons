@@ -1,4 +1,4 @@
-#include"sfida.h"
+#include"sfida.hpp"
 
 inline bool sfida(Player& p,Personaggio& pe,Zaino& z){
 	bool turno = checkFirst(p,pe);
@@ -203,6 +203,7 @@ inline bool checkWin(Player& p, Personaggio& pe){
 }
 
 
-inline bool sfidaP(){
-
+inline bool sfidaP(Player& p, Codemon& c){
+	std::cout << "il collegamento funziona" << std::endl;
+	return 1;	
 }

@@ -1,4 +1,4 @@
-#include"personaggio.h"
+#include"personaggio.hpp"
 
 inline Personaggio::Personaggio(std::string nome , int func,  int n_cod ,bool onori){//mi serve solo saper nome , func ,numero di pokemon e se è capoDepartment, il resto settato di default/ad hoc
 		this->nome = nome;

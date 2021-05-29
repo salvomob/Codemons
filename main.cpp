@@ -1,29 +1,34 @@
 #include<iostream>
-#include"mossa.h"
-#include"personaggio.h"
-#include"Codemon.h"
-#include"player.h"
-#include"identification.h"
+#include"mossa.hpp"
+#include"personaggio.hpp"
+#include"Codemon.hpp"
+#include"player.hpp"
+#include"identification.hpp"
 #include"mossa.cpp"
 #include"personaggio.cpp"
-#include"codedex.h"
-#include"box.h"
-#include"item.h"
-#include"itemb.h"
-#include"codeCube.h"
-#include"zaino.h"
-#include"sfida.h"
+#include"codedex.hpp"
+#include"box.hpp"
+#include"item.hpp"
+#include"itemb.hpp"
+#include"codeCube.hpp"
+#include"zaino.hpp"
+#include"sfida.hpp"
 #include"sfida.cpp"
-
-
-
+#include "game.hpp"
+#include "game.cpp"
+#include "textureManager.hpp"
+#include "textureManager.cpp"
+#include "map.hpp"
+#include "map.cpp"
 
 using namespace std;
+
+Game *game = nullptr;
 
 
 int main()
 {
-	srand(time(NULL));
+	/*srand(time(NULL));
 	Codemon c("abc",1,1,5,2,10,10,5,5,5,5,1,100);
 	Codemon c1("def",2,1,5,2,10,10,5,5,5,5,1,100);
 	Codemon c2("ghi",3,1,5,2,10,10,5,5,5,5,1,100);
@@ -32,7 +37,7 @@ int main()
 	Codemon c5("rst",4,1,5,2,10,10,5,5,5,5,1,100);
 	Codemon c6("uvz",4,1,5,2,10,10,5,5,5,5,1,100);
 	Codemon c7("xy",4,1,5,2,10,10,5,5,5,5,1,100);
-	Codemon c8("x1234",4,1,5,2,10,10,5,5,5,5,1,100);
+	Codemon c8("x1234",4,1,5,2,10,10,5,5,5,5,1,100);*/
 
 	/*c.show(cout);
 	
@@ -49,14 +54,14 @@ int main()
 */
 	
 //	FUNZIONA
-	Box b("BOX 1");
+/*	Box b("BOX 1");
 	Player p("Salvo",1);
 	
 	
 	Personaggio personaggio1("Personaggio 1",1,0,0);
 	Personaggio personaggio2("Personaggio 2",2,0,0);
 	Personaggio personaggio3("Personaggio 3",3,3,0);
-	Personaggio personaggio4("Personaggio 4",3,2,1);
+	Personaggio personaggio4("Personaggio 4",3,2,1);*/
 	
 	
 	
@@ -225,11 +230,11 @@ FUNZIONA
 		else cout << "NO : " << random  << endl;
 	}*/
 	
-	Mossa mossa("mossa1",1,0,0,0,0,0,0,-50,"NONOK",10);
+	/*Mossa mossa("mossa1",1,0,0,0,0,0,0,-50,"NONOK",10);
 	Mossa mossa2("mossa2",1,0,0,0,0,0,0,-50,"NONOK",10);
 	Mossa mossa3("mossa3",1,0,0,0,0,0,0,-50,"NONOK",10);
 	Mossa mossa4("mossa4",1,0,0,0,0,0,0,-50,"NONOK",10);
-
+*/
 
 
 
@@ -273,7 +278,7 @@ FUNZIONA
 	mossicine[19] = mossaprova;
 	
 	c1.setMosseA(mossicine);*/
-	c.setMossa(mossa);
+	/*c.setMossa(mossa);
 	c.setMossa(mossa2);
 	c.setMossa(mossa3);
 	c.setMossa(mossa4);
@@ -317,10 +322,10 @@ FUNZIONA
 	c8.setMossa(mossa);
 	c8.setMossa(mossa2);
 	c8.setMossa(mossa3);
-	c8.setMossa(mossa4);
+	c8.setMossa(mossa4);*/
 	//c1.setMossa(mossaprova);
 	
-	//p.insCodInTeam(c1,b);
+	/*//p.insCodInTeam(c1,b);
 	p.insCodInTeam(c,b);
 	p.insCodInTeam(c2,b);
 	p.insCodInTeam(c3,b);
@@ -332,7 +337,7 @@ FUNZIONA
 	personaggio3.insCodInTeam(c8);
 	
 	personaggio4.insCodInTeam(c);
-	personaggio4.insCodInTeam(c1);
+	personaggio4.insCodInTeam(c1);*/
 	
 	
 	/*personaggio1.show(cout);
@@ -370,7 +375,7 @@ FUNZIONA
 	//p.getCodemon2().getMossa1().setPP(-1);
 	//cout << p.getCodemon2().getMossa1().getPP();
 	
-	Codecube codecube("UltraCube" , 0.60f);
+	/*Codecube codecube("UltraCube" , 0.60f);
 	Item i("pozione",1,1,1,1,1,1,1,10,"OK",true,200);
 	Itemb itb("item base 1");
 	Zaino z;
@@ -392,7 +397,7 @@ FUNZIONA
 	
 	if(sfida(p,personaggio3,z)) cout << "HAI VINTO!!! TI MERITI UN PUGNO\n";
     else cout << "COME HAI FATTO A PERDERE BRUTTO IDIOTA! MO VATTI A CURARE\n";
-	
+	*/
 	/*
 	
 	così funziona :/
@@ -406,6 +411,35 @@ FUNZIONA
 	}
 	*/
 	
+	const int FPS = 60;
+	const int frameDelay = 1000/FPS;
+	Uint32 frameStart ;
+	int frameTime;
+	
+	game = new Game();
+	
+	game->init("CODEMON",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1280,800,false);
+	
+	while(game->running())
+	{
+		frameStart = SDL_GetTicks();
+		
+		
+		game->handleEvents();
+		game->update();
+		game->render();
+		
+		frameTime = SDL_GetTicks() - frameStart;
+		
+		if(frameDelay > frameTime)
+		{
+			SDL_Delay(frameDelay-frameTime);
+		}		
+	}
+	
+	game->clean();
+	
+	return 0;
 }
 
 
