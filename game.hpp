@@ -7,6 +7,9 @@
 #include<iostream>
 #include<fstream>
 
+class Player;
+class Map;
+
 class Game{
 
 private:
@@ -28,6 +31,7 @@ public:
 	{
 		return isRunning;
 	}
+	void collision(Player* p,Map *map);
 };
 
 #endif

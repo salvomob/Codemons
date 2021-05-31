@@ -29,14 +29,14 @@ private:
 	SDL_Texture* sediaup;
 	SDL_Texture* sediadown;
 	
-	int map[25][40];
+	
 	
 	
 public:
 
 	Map();
 	~Map();
-	
+	int map[25][40];
 	void loadMap(int arr[25][40]);
 	void loadMap(const char* filename);
 	void drawMap();

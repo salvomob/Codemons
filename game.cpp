@@ -8,8 +8,7 @@ Map *map;
 Codemon *c;
 Player *p;
 SDL_Renderer* Game::renderer = nullptr;
-
-
+int lastPx,lastPy;//queste sono le coordinate x e y del player prima della pressione di un tasto di movimento : mi servono nel casso in cui esso collida con qualcosa e sembra funzionare :)
 Game::Game()
 {}
 
@@ -65,7 +64,8 @@ void Game::handleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
-	
+	lastPx = p->posx;
+	lastPy = p->posy;
 	switch(event.type)
 	{
 		case SDL_QUIT:
@@ -99,6 +99,8 @@ void Game::handleEvents()
 
 void Game::update()
 {
+	
+	collision(p,map);
 	p->update();
 	//c->update();
 	/*
@@ -130,4 +132,18 @@ void Game::clean()
 	TTF_Quit();
 	SDL_Quit();
 	std::cout << "Game Cleaned\n";
+}
+
+void Game::collision(Player *p,Map *m)
+{
+	int j = p->posx/32;
+	int i = p->posy/32;
+	
+	if(m->map[i][j]!=1)
+	{
+		p->posx = lastPx;
+		p->posy = lastPy;
+		//std::cout << i << " " << j << "->" << m->map[i][j] << std::endl;
+	}
+		
 }

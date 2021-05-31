@@ -5,6 +5,7 @@
 #include"box.hpp"
 #include"game.hpp"
 #include"textureManager.hpp"
+#include "map.hpp"
 
 
 class Player{
@@ -53,7 +54,7 @@ public:
 		textBackF = TextureManager::loadText(filenameBackF);
 		font = TextureManager::loadFont(this->nome,20);
 		posx = 0; 
-		posy = 0;
+		posy = 32;
 	}
 	
 	void setNome(std::string name){
@@ -198,7 +199,7 @@ public:
 			destinationF.w = 128;
 			destinationF.h = 32;
 			
-			
+			collisions();
 			}
 		
 		void render(){
@@ -208,6 +209,32 @@ public:
 			SDL_RenderCopy(Game::renderer,textFrontF,&source,&destination);
 			//SDL_RenderCopy(Game::renderer,font,&sourceF,&destinationF);
 		}
+		
+		void collisions()
+		{
+			//collision to the left wall
+			if(posx < 32)
+			{
+				posx = 32;
+			}
+			//collision to the top wall
+			if(posy < 32)
+			{
+				posy = 32;
+			}
+			//collision to the right wall
+			if(posx > 1216)
+			{
+				posx = 1216;
+			}
+			//collision to the bottom wall
+			if(posy > 736)
+			{
+				posy = 736;
+			}
+		}
+		
+		
 	
 };
 
