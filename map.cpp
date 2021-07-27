@@ -83,9 +83,12 @@ inline void Map::loadMap(const char* filename)
 	{
 		for(int cols = 0; cols < 40 ; cols++)
 		{
-			in>>map[rows][cols];
+			int x;
+			in>>x;
+			map[rows][cols] = x;
 		}
 	}
+	in.close();
 }
 
 

@@ -1,6 +1,6 @@
 #include"personaggio.hpp"
 
-inline Personaggio::Personaggio(std::string nome , int func,  int n_cod ,bool onori){//mi serve solo saper nome , func ,numero di pokemon e se è capoDepartment, il resto settato di default/ad hoc
+inline Personaggio::Personaggio(std::string nome , int func,  int n_cod ,bool onori,const char* filenameFrontM,const char* filenameBackM,const char* filenameFrontF,const char* filenameBackF,int posx, int posy){//mi serve solo saper nome , func ,numero di pokemon e se è capoDepartment, il resto settato di default/ad hoc
 		this->nome = nome;
 		this->func = func;
 		this->speech = NULL;
@@ -13,6 +13,18 @@ inline Personaggio::Personaggio(std::string nome , int func,  int n_cod ,bool on
 		}
 		this->soldi = 0;
 		this->onori = onori;
+		textFrontM = TextureManager::loadText(filenameFrontM);
+		textBackM = TextureManager::loadText(filenameBackM);
+		textFrontF = TextureManager::loadText(filenameFrontF);
+		textBackF = TextureManager::loadText(filenameBackF);
+		font = TextureManager::loadFont(this->nome,20);
+		this->posx = posy;
+		this->posy = posx;
+		this->interation = false;
+		SDL_SetRenderDrawColor(Game::renderer,255,255,255,255);
+		lm = move;
+		lpx = this->posx;
+		lpy = this->posy;
 	}
 	
 	//metodi set
@@ -135,3 +147,90 @@ inline Personaggio::Personaggio(std::string nome , int func,  int n_cod ,bool on
 		if(n == this->n_cod) return true;
 		return false;
 	}
+	
+	inline void Personaggio::draw()
+	{	
+			source.h = 32;
+			source.w = 32;
+			source.x = 0;
+			source.y = 0;
+			
+			destination.x = posx;
+			destination.y = posy;
+			destination.w = 32;
+			destination.h = 32;
+			
+			sourceF.h = 1280;
+			sourceF.w = 1280;
+			sourceF.x = 0;
+			sourceF.y = 0;
+			
+			destinationF.x = 0;
+			destinationF.y = 0;
+			destinationF.w = 1280;
+			destinationF.h = 800;
+			moves();
+			if(interation)
+			{
+				stop();
+			}
+	}
+	
+	inline void Personaggio::render()
+	{
+		//qui si vede quale tipo di personaggio renderizzare e quale sprite usare, per ora è il player maschile . DA CAMBIARE
+		SDL_RenderCopy(Game::renderer,textFrontM,&source,&destination);
+//		else
+		if(interation)
+		{
+			SDL_RenderCopy(Game::renderer,textFrontM,&source,&destination);
+			SDL_RenderClear(Game::renderer);
+			SDL_RenderCopy(Game::renderer,font,&sourceF,&destinationF);
+		}
+	}
+	
+	inline void Personaggio::moves()
+	{
+	//il personaggio si muove lungo un cerchio , per ora.
+			lpx = posx;
+			lpy = posy;
+			lm = move;
+			if(move == 1400) move = 1;
+			if(move == 600 )
+			{
+				posx+= 32;
+			}
+			
+			if(move == 1200)
+			{
+				posx-=32;
+			}
+			
+			if(move == 500)
+			{
+				posy += 32;
+			}
+			if(move == 1000)
+			{
+				posy -=32;
+			}
+			move++;
+			
+	}
+	
+	inline void Personaggio::stop()
+	{
+		move = lm;
+		posx = lpx;
+		posy = lpy;
+	}
+		
+	
+	
+	inline void Personaggio::interact(Player p)
+	{	
+		if((abs(posx-p.posx) == 32 && abs(posy-p.posy) == 0) || (abs(posx-p.posx) == 0 && abs(posy-p.posy) == 32) )
+			interation = true;
+		else interation = false;	
+	}
+	

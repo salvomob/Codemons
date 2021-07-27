@@ -47,21 +47,24 @@ private:
 	Mossa **mosse;
 	Mossa **mosseC;
 	Mossa **mosseA;
-	SDL_Texture * font ;
-	SDL_Rect sourceF,destinationF;
-	SDL_Texture *textFront,*textBack;
-	SDL_Rect source,destination;
-	const char* filenameFront;
-	const char* filenameBack;
+	std::string description;
+	
 	
 public:
-		
+	SDL_Texture * font ;
+	SDL_Rect sourceF,destinationF;
+	SDL_Rect sourceF2,destinationF2;
+	SDL_Texture *textFront,*textBack;
+	SDL_Rect source,destination;
+	SDL_Rect source2,destination2;
+	const char* filenameFront;
+	const char* filenameBack;
 	int posx;
 	int posy;		
 	
 	Codemon(){}
 	
-	Codemon(std::string nome,int id,int tipo,int livello,int nMosseI,int attacco,int difesa,int attaccoX,int difesaX,int velocita,int precisione,int stadio,int hpM,const char* filenameFront, const char* filenameBack){
+	Codemon(std::string nome,int id,int tipo,int livello,int nMosseI,int attacco,int difesa,int attaccoX,int difesaX,int velocita,int precisione,int stadio,int hpM,const char* filenameFront, const char* filenameBack,std::string description){
 		this->nome = nome;
 		this->id = id;
 		this->tipo = tipo;
@@ -106,12 +109,15 @@ public:
 		this->mosseC = new Mossa*[this->nMosseC];
 		for(int i = 0; i < this->nMosseC; i++) this->mosseC[i] = NULL;
 		this->mosseA = new Mossa*[this->nMosseA];
-		for(int i = 0; i < this->nMosseA; i++) this->mosseA[i] = NULL;  	
+		for(int i = 0; i < this->nMosseA; i++) this->mosseA[i] = NULL; 
+		this->filenameFront = filenameFront ;
+		this->filenameBack = filenameBack;	
 		textFront = TextureManager::loadText(filenameFront);
 		textBack = TextureManager::loadText(filenameBack);
 		font = TextureManager::loadFont(this->nome,20);
-		posx = 0; 
-		posy = 0;
+		posx = 64; 
+		posy = 640;
+		this->description = description;
 	}
 	//metodi get->possono essere usati per tener traccia dei valori del codemon al di fuori della classe codemon (ad esempio durante uno scontro o durante altre features)
 	
@@ -202,6 +208,11 @@ public:
 		return this->stato;
 	}
 	
+	const char* getFile() const
+	{
+		return this->filenameFront;
+	}
+	
 	bool getFainted(){
 		if(this->hp  == 0){
 			this->fainted = true;
@@ -209,6 +220,11 @@ public:
 		}
 		else return false;
 		
+	}
+	
+	std::string getDescription()
+	{
+		return this->description;
 	}
 	
 	int getIdentification(){
@@ -271,6 +287,11 @@ public:
 	
 	void setVelocita(int vel){
 		this->velocita = this->velocita+vel;
+	}
+	
+	void setDescription(std::string d)
+	{
+		this->description = d;
 	}
 	
 	void setPrecisione(int prec){
@@ -429,36 +450,61 @@ public:
 			}
 		}
 		
-		void update(){
-			//posx ++;
-			//posy = 0;
+		void drawF()
+		{
+			source2.h = 128;
+			source2.w = 128;
+			source2.x = 0;
+			source2.y = 0;
 			
+			destination2.x = 1100;
+			destination2.y = 64;
+			destination2.w = 128;
+			destination2.h = 128;
+			
+			sourceF2.h = 64;
+			sourceF2.w = 64;
+			sourceF2.x = 0;
+			sourceF2.y = 0;
+			
+			destinationF2.x = 1100;
+			destinationF2.y = 64+destination.h;
+			destinationF2.w = 128;
+			destinationF2.h = 32;
+			
+			
+		}
+			
+		void drawB()
+		{
 			source.h = 128;
 			source.w = 128;
 			source.x = 0;
 			source.y = 0;
+			
+			sourceF.h = 64;
+			sourceF.w = 64;
+			sourceF.x = 0;
+			sourceF.y = 0;	
 			
 			destination.x = posx;
 			destination.y = posy;
 			destination.w = 128;
 			destination.h = 128;
 			
-			sourceF.h = 64;
-			sourceF.w = 64;
-			sourceF.x = 0;
-			sourceF.y = 0;
-			
 			destinationF.x = posx;
 			destinationF.y = posy+destination.h;
 			destinationF.w = 128;
-			destinationF.h = 32;
-			
-			
-			}
+			destinationF.h = 32;	
+		
+		}	
 		
 		void render(){
-			SDL_RenderCopy(Game::renderer,textFront,&source,&destination);
+			//SDL_RenderClear(Game::renderer);
+			SDL_RenderCopy(Game::renderer,textFront,&source2,&destination2);
+			SDL_RenderCopy(Game::renderer,textBack,&source,&destination);
 			SDL_RenderCopy(Game::renderer,font,&sourceF,&destinationF);
+			SDL_RenderCopy(Game::renderer,font,&sourceF2,&destinationF2);
 		}
 		
 		

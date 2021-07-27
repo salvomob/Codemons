@@ -1,4 +1,5 @@
 #include<iostream>
+//#include<unistd.h>
 #include"mossa.hpp"
 #include"personaggio.hpp"
 #include"Codemon.hpp"
@@ -410,6 +411,8 @@ FUNZIONA
 	cout << team1[0].getNome() << " ha " << team1[0].getHP() << endl;
 	}
 	*/
+
+	
 	
 	const int FPS = 60;
 	const int frameDelay = 1000/FPS;
@@ -418,7 +421,7 @@ FUNZIONA
 	
 	game = new Game();
 	
-	game->init("CODEMON",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1280,800,false);
+	game->init("CODEMON GAME",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,1280,800,false);
 	
 	while(game->running())
 	{

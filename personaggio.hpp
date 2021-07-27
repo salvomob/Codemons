@@ -1,6 +1,9 @@
 #ifndef PERSONAGGIO_HPP
 #define PERSONAGGIO_HPP
 
+#include"textureManager.hpp"
+#include"game.hpp"
+
 class Codemon;
 
 class Personaggio{
@@ -14,9 +17,25 @@ private:
 	int n_cod;//numero codemons in team
 	int soldi;
 	bool onori;//se true e viene sconfitto, da un attestato al player
+	SDL_Texture * font ;
+	SDL_Rect sourceF,destinationF;
+	SDL_Texture *textFrontM,*textBackM;
+	SDL_Texture *textFrontF,*textBackF;
+	SDL_Rect source,destination;
+	const char* filenameFrontM;
+	const char* filenameBackM;
+	const char* filenameFrontF;
+	const char* filenameBackF;
+
+		
 	
 public:
-	Personaggio(std::string nome , int func,  int n_cod ,bool onori);
+
+	int posx,posy;	
+	int move = 1;
+	bool interation;
+	int lpx,lpy,lm;
+	Personaggio(std::string nome , int func,  int n_cod ,bool onori,const char* filenameFrontM,const char* filenameBackM,const char* filenameFrontF,const char* filenameBackF,int posx , int posy);
 	
 	//metodi set
 	
@@ -66,6 +85,16 @@ public:
 	Codemon& getCodemon5();
 	
 	Codemon& getCodemon6();
+	
+	void draw();
+	
+	void moves();
+	
+	void interact(Player p);	
+	
+	void render();
+	
+	void stop();
 	
 	bool died();
 };
