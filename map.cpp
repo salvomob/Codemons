@@ -34,24 +34,24 @@ int p1[25][40] = {
 Map::Map()
 {
 
-	mattonella = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/Mattonella_base.png");
-	armadio = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/Armadio.png");
-	tavolo1 = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloA.png");
-	tavolo2 = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloB.png");
-	tavolo3 = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloC.png");
-	tavolo4 = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloD.png");
-	tavolo1L = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloAL.png");
-	tavolo2L = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloBL.png");
-	tavolo3L = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloCL.png");
-	tavolo4L = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/TavoloDL.png");
-	libreria = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/Scaffale.png");
-	finestra = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/Finestra.png");
-	muro = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/Muro.png");
-	pianta = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/Pianta.png");
-	sediasx = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/SediaSx.png");
-	sediadx = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/SediaDx.png");
-	sediaup = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/SediaAx.png");
-	sediadown = TextureManager::loadText("/home/salvatore/Scrivania/Codemons/SPRITES/Ambienti/Primo_Piano/SediaAx.png");
+	mattonella = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/Mattonella_base.png");
+	armadio = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/Armadio.png");
+	tavolo1 = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloA.png");
+	tavolo2 = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloB.png");
+	tavolo3 = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloC.png");
+	tavolo4 = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloD.png");
+	tavolo1L = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloAL.png");
+	tavolo2L = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloBL.png");
+	tavolo3L = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloCL.png");
+	tavolo4L = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/TavoloDL.png");
+	libreria = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/Scaffale.png");
+	finestra = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/Finestra.png");
+	muro = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/Muro.png");
+	pianta = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/Pianta.png");
+	sediasx = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/SediaSx.png");
+	sediadx = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/SediaDx.png");
+	sediaup = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/SediaAx.png");
+	sediadown = TextureManager::loadText("./SPRITES/Ambienti/Primo_Piano/SediaAx.png");
 	
 	loadMap(p1);
 	
